@@ -1,0 +1,167 @@
+		JUNE 2022
+Q. How do you assign a random number to a variable in Python?
+Ans:
+import random
+
+num = random.randint(1, 100)  
+print(num)
+
+Q. Explain how the matrix multiplications are done using numpy arrays.
+Ans:
+import numpy as np
+
+A = np.array([[1, 2], [3, 4]])
+B = np.array([[5, 6], [7, 8]])
+
+C = np.dot(A, B)  
+print(C)
+
+O/p:-[[19 22]
+      [43 50]]
+
+Q. How to plot two or more lines on a same plot with suitable legends, labels and a
+title.
+Ans:
+import matplotlib.pyplot as plt
+x = [1, 2, 3, 4, 5]
+y1 = [2, 4, 6, 8, 10]  # Line 1
+y2 = [1, 3, 5, 7, 9]   # Line 2
+
+plt.plot(x, y1, label="Line 1 (y = 2x)", color="blue", linestyle="-", marker="o")
+plt.plot(x, y2, label="Line 2 (y = x + 2)", color="red", linestyle="--", marker="s")
+
+plt.title("Multiple Line Plot Example")
+plt.xlabel("X-axis Label")  
+plt.ylabel("Y-axis Label")  
+
+plt.legend()
+
+plt.show()
+
+Q. columns(name, gender, start_date ,salary, team).
+Write commands to do the following using panda library.
+1. print first 7 records from employees file
+2. print all employee names in alphabetical order
+3. find the name of the employee with highest salary
+4. list the names of male employees
+5. to which all teams employees belong
+Ans:
+import pandas as pd
+df = pd.read_csv("employees.csv")
+
+1. print(df.head(7))
+2. print(df.sort_values(by="name")["name"])
+3. highest_salary_employee = df.loc[df["salary"].idxmax(), "name"]
+   print(highest_salary_employee)
+4. print(df[df["gender"] == "Male"]["name"])
+5. print(df["team"].unique())
+
+Q. Write Python program to write the data given below to a CSV file
+
+Reg_no Name Sub_Mark1 Sub_Mark2 Sub_Mark3
+10001 Jack 76 88 76
+10002 John 77 84 79
+10003 Alex 74 79 81
+Ans:
+import csv
+
+data = [
+    ["Reg_no", "Name", "Sub_Mark1", "Sub_Mark2", "Sub_Mark3"],  
+    [10001, "Jack", 76, 88, 76],
+    [10002, "John", 77, 84, 79],
+    [10003, "Alex", 74, 79, 81]
+]
+
+with open("students.csv", mode="w", newline="") as file:
+    writer = csv.writer(file)
+
+    writer.writerows(data)
+
+print("CSV file 'students.csv' has been created successfully!")
+
+
+		MAY 2023
+Q. Consider the followin two-dimensional array named arr2d
+[[1, 2, 3],
+[4, 5, 6],
+[7, 8, 9]]
+Write the output of following Python Numpy expressions:
+1. arr2d[:2]
+2. arr2d[:2, 1:]
+3. arr2d[1, :2]
+4. arr2d[:2, 1:] = 0
+Ans:
+import numpy as np
+
+arr2d = np.array([[1, 2, 3],
+                  [4, 5, 6],
+                  [7, 8, 9]])
+1. print(arr2d[:2])
+	o/p:[[1 2 3]
+             [4 5 6]]
+2. print(arr2d[:2, 1:])
+        o/p:[[2 3]
+             [5 6]]
+3. print(arr2d[1, :2])
+        o/p:[4 5]
+4. arr2d[:2, 1:] = 0
+   print(arr2d)
+	o/p: [[1 0 0]
+              [4 0 0]
+              [7 8 9]]
+
+Q. Write a pandas program to read csv file named "Diamond.csv" with the fields carat, cut, color, clarity, depth, and price and to print the following:
+1. Number of rows and columns
+2. First five rows
+Ans:
+import pandas as pd
+df = pd.read_csv("Diamond.csv")
+print("Number of Rows and Columns:", df.shape)
+print("\nFirst Five Rows:")
+print(df.head())
+
+
+Q. Temperature(°C) on different dates is stored in a CSV file as "Weather_data.csv" with fields
+date, temperature and humidity.
+
+1.Draw a plot of the weather report with date as the x-axis and temperature as
+the y-axis.
+2. .Draw a scatter plot of the weather report with date as the x-axis and humidity
+as the y-axis.
+Give appropriate titles and labels in the plot.
+Ans:
+import pandas as pd
+import matplotlib.pyplot as plt
+df = pd.read_csv("Weather_data.csv")
+
+df["date"] = pd.to_datetime(df["date"])
+
+plt.figure(figsize=(10, 5))
+plt.plot(df["date"], df["temperature"], marker="o", linestyle="-", color="b", label="Temperature")
+
+plt.xlabel("Date")
+plt.ylabel("Temperature (°C)")
+plt.title("Temperature Trend Over Time")
+plt.xticks(rotation=45)  
+plt.legend()
+plt.grid(True)
+plt.show()
+
+plt.figure(figsize=(10, 5))
+plt.scatter(df["date"], df["humidity"], color="r", label="Humidity")
+
+plt.xlabel("Date")
+plt.ylabel("Humidity (%)")
+plt.title("Humidity Trend Over Time")
+plt.xticks(rotation=45)
+plt.legend()
+plt.grid(True)
+plt.show()
+
+
+
+
+
+
+
+
